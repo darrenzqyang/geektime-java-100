@@ -57,6 +57,7 @@ public class ExtremeThreadPoolExecutor extends ThreadPoolExecutor {
             if (!e.isShutdown()) {
                 //真正入阻塞队列，若阻塞队列已满，则抛出RejectedExecutionException
                 if (!((ExtremeBlockQueue)e.getQueue()).extremeOffer(r)) {
+                    //可以真正进行触发策略的执行（不管是默认的，还是自定义的）
                     throw new RejectedExecutionException("Task " + r.toString() +
                             " rejected from " +
                             e.toString());
