@@ -1,5 +1,3 @@
-package com.share.rabbitmq.base;
-
 import java.util.stream.IntStream;
 
 /**
