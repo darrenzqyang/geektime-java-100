@@ -10,13 +10,14 @@ import java.util.stream.Collector;
 /**
  * 要实现自定义收集器，只需要实现java.util.stream.Collector<T, A, R>接口即可，这个接口包含五个无参方法：[supplier， accumulator， combiner， finisher， characteristics]。
  * 泛型含义如下：
- *
+ * <p>
  * T：缩减操作的输入元素的类型
  * A：还原操作的可变累积类型（通常隐藏为实现细节）
  * R：还原操作的结果类型
  * T不必说，收集什么泛型的列表，就输入什么类型，比如我对一个Student列表进行收集计算，那么T肯定是Student。
  * A是计算过程中用来盛放计算结果的容器，一般都是List，Set等等。
  * R就比较好理解，就是收集完成后返回的类型，需要注意的是，当characteristics()中包含Characteristics.IDENTITY_FINISH时，。
+ *
  * @author: zhiqiang.yang@shuyun.com
  * @data: 2020-03-17 15:32
  */
@@ -24,7 +25,7 @@ public class MostPopularCollector implements Collector<Object, Map<Object, Atomi
 
 
     /**
-     *  该方法返回一个Supplier<A>类型的结果，表示在计算过程中，如何初始化一个临时容器，比如A=List，那么一般返回ArrayList::new
+     * 该方法返回一个Supplier<A>类型的结果，表示在计算过程中，如何初始化一个临时容器，比如A=List，那么一般返回ArrayList::new
      *
      * @return
      */
@@ -65,7 +66,7 @@ public class MostPopularCollector implements Collector<Object, Map<Object, Atomi
      */
     @Override
     public Function<Map<Object, AtomicInteger>, Optional<Object>> finisher() {
-        return (Map<Object, AtomicInteger> acc) -> Optional.ofNullable(acc.entrySet()
+        return acc -> Optional.ofNullable(acc.entrySet()
                 .stream()
                 .max((Comparator.comparingInt(o -> o.getValue().get())))
                 .get().getKey());
