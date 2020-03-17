@@ -18,7 +18,7 @@ import java.util.stream.Collector;
  * A是计算过程中用来盛放计算结果的容器，一般都是List，Set等等。
  * R就比较好理解，就是收集完成后返回的类型，需要注意的是，当characteristics()中包含Characteristics.IDENTITY_FINISH时，。
  *
- * @author: zhiqiang.yang@shuyun.com
+ * @author: darren
  * @data: 2020-03-17 15:32
  */
 public class MostPopularCollector implements Collector<Object, Map<Object, AtomicInteger>, Optional<Object>> {
