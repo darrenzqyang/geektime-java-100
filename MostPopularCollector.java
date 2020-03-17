@@ -66,7 +66,7 @@ public class MostPopularCollector implements Collector<Object, Map<Object, Atomi
      */
     @Override
     public Function<Map<Object, AtomicInteger>, Optional<Object>> finisher() {
-        return acc -> Optional.ofNullable(acc.entrySet()
+        return map -> Optional.ofNullable(map.entrySet()
                 .stream()
                 .max((Comparator.comparingInt(o -> o.getValue().get())))
                 .get().getKey());
