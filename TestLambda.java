@@ -1,3 +1,5 @@
+package com.share.rabbitmq.base;
+
 import java.util.stream.IntStream;
 
 /**
@@ -112,6 +114,23 @@ public class TestLambda {
      可以看到，捕获了局部变量的 Lambda 表达式多出了一个 get$Lambda 的方法。
      启动方法便会所返回的调用点链接至指向该方法的方法句柄。也就是说，每次执行 invokedynamic 指令时，
      都会调用至这个方法中，并构造一个新的适配器类实例。
+
+
+     生成的内部类
+     InnerClasses:
+     public static final #60= #59 of #63; //Lookup=class java/lang/invoke/MethodHandles$Lookup of class java/lang/invoke/MethodHandles
+     BootstrapMethods:
+     0: #33 invokestatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+     Method arguments:
+     #34 (I)I
+     #35 invokestatic com/share/rabbitmq/base/TestLambda.lambda$main$0:(I)I
+     #34 (I)I
+     1: #33 invokestatic java/lang/invoke/LambdaMetafactory.metafactory:(Ljava/lang/invoke/MethodHandles$Lookup;Ljava/lang/String;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodType;Ljava/lang/invoke/MethodHandle;Ljava/lang/invoke/MethodType;)Ljava/lang/invoke/CallSite;
+     Method arguments:
+     #34 (I)I
+     #38 invokestatic com/share/rabbitmq/base/TestLambda.lambda$main$1:(II)I
+     #34 (I)I
+
      */
 
 
