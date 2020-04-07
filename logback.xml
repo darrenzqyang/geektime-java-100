@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration scan="true" scanPeriod="60 seconds" debug="false">
+
+    <!--_info.log文件输出-->
+    <!-- 按照每天和固定大小(100MB)生成日志文件【最新的日志，是日期最大数字最大的】 -->
+    <appender name="FileInfoLog"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--只输出INFO和WARN 使用EvaluatorFilter，采用表达式-->
+        <filter class="ch.qos.logback.core.filter.EvaluatorFilter">
+            <evaluator class="ch.qos.logback.classic.boolex.GEventEvaluator">
+                <expression>
+                    e.level.toInt() == WARN.toInt() || e.level.toInt() == INFO.toInt()
+                </expression>
+            </evaluator>
+            <OnMismatch>DENY</OnMismatch>
+            <OnMatch>NEUTRAL</OnMatch>
+        </filter>
+
+        <!--滚动策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--日志文件保留天数-->
+            <MaxHistory>30</MaxHistory>
+            <!--日志文件最大的大小-->
+            <MaxFileSize>100MB</MaxFileSize>
+            <!--日志整体最大
+             可选的totalSizeCap属性控制所有存档文件的总大小。当超过总大小上限时，将异步删除最旧的存档。
+             totalSizeCap属性也需要设置maxHistory属性。此外，“最大历史”限制总是首先应用，“总大小上限”限制其次应用。
+             -->
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+    </appender>
+
+    <!--_error.log文件输出-->
+    <!-- 按照每天和固定大小(100MB)生成日志文件【最新的日志，是日期最大数字最大的】 -->
+    <appender name="FileErrorLog"  class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <filter class="ch.qos.logback.classic.filter.ThresholdFilter">
+            <!--设置日志级别，只输入error日志-->
+            <level>ERROR</level>
+        </filter>
+        <!--滚动策略-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.SizeAndTimeBasedRollingPolicy">
+            <!--日志文件保留天数-->
+            <MaxHistory>30</MaxHistory>
+            <!--日志文件最大的大小-->
+            <MaxFileSize>100MB</MaxFileSize>
+            <!--日志整体最大
+             可选的totalSizeCap属性控制所有存档文件的总大小。当超过总大小上限时，将异步删除最旧的存档。
+             totalSizeCap属性也需要设置maxHistory属性。此外，“最大历史”限制总是首先应用，“总大小上限”限制其次应用。
+             -->
+            <totalSizeCap>10GB</totalSizeCap>
+        </rollingPolicy>
+
+    </appender>
+</configuration>
